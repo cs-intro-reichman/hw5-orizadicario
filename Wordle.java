@@ -31,33 +31,24 @@ public class Wordle {
     // Compute feedback for a single guess into resultRow.
     // G for exact match, Y if letter appears anywhere else, _ otherwise.
     public static void computeFeedback(String secret, String guess, char[] resultRow) {
-		for(int i=0; i<resultRow.length; i++){
-            char ch = guess.charAt(i);
-                if(ch==secret.charAt(i)){
-                    resultRow[i]='G';
-                    secret = secret.substring(0,i)+'*'+secret.substring(i+1);
-                }
-                
-            }
-        
+    for (int i = 0; i < resultRow.length; i++) {
+        char ch = guess.charAt(i);
+        if (ch == secret.charAt(i)) {
+            resultRow[i] = 'G';
+        }
+    }
 
-            for(int i=0; i<resultRow.length; i++){
-                char ch = guess.charAt(i);
-                if(resultRow[i]!='G'){
-                if(containsChar(secret,ch)==true){
-                    resultRow[i]='Y';
-                    for(int j=0; j<secret.length(); j++){
-                        if(ch==secret.charAt(j)){
-                            secret = secret.substring(0,j)+'*'+secret.substring(j+1);
-                            break;
-                        }
-                    }
-                }else{
-                    resultRow[i]='_';
-                }
+    for (int i = 0; i < resultRow.length; i++) {
+        char ch = guess.charAt(i);
+        if (resultRow[i] != 'G') {
+            if (containsChar(secret, ch)) {
+                resultRow[i] = 'Y';
+            } else {
+                resultRow[i] = '_';
             }
         }
-            }
+    }
+}
         
     
 
